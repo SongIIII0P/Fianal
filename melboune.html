@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+
+    <title>SSongII's World</title>
+
+</head>
+
+<style>
+    body,
+    html {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .click {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 300px;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        z-index: 1;
+        opacity: 0;
+        text-shadow: 0px 0px 50px blue, 0px 0px 100px blue, 0px 0px 200px blue, 0px 0px 300px blue, 0px 0px 400px blue;
+        animation: fadeInOut 0.4s ease-in-out 2 25s forwards;
+
+    }
+
+    #melbourne {
+        position: fixed;
+        top: 1%;
+        left: 1%;
+        font-size: 17px;
+        color: blue;
+        white-space: pre-line;
+        opacity: 1;
+        text-shadow: 0px 0px 12px blue;
+        z-index: 10;
+        pointer-events: none;
+        user-select: none;
+    }
+
+    #bcos a {
+        position: fixed;
+        bottom: 3%;
+        right: 1%;
+        font-size: 17px;
+        text-decoration: none;
+        color: blue;
+        white-space: pre-line;
+        text-shadow: 0px 0px 12px blue;
+        z-index: 10;
+        user-select: none;
+        opacity: 1;
+        animation: flicker 2s ease-in-out infinite alternate;
+        animation-delay: 0.6s;
+
+    }
+
+    #bcos a:hover {
+        color: white;
+    }
+
+
+
+    @keyframes flicker {
+        0% {
+            text-shadow: 0 0 12px blue;
+        }
+
+        50% {
+            text-shadow: 0 0 15px blue, 0 0 25px blue, 0 0 40px blue;
+        }
+
+        100% {
+            text-shadow: 0 0 14px blue, 0 0 14px blue, 0 0 18px blue;
+        }
+    }
+
+
+
+    @keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
+    }
+
+
+    @keyframes fadeOut {
+        to {
+            opacity: 0;
+        }
+    }
+
+    @keyframes fadeInOut {
+
+        0%,
+        20% {
+            opacity: 0;
+        }
+
+        10%,
+        30% {
+            opacity: 1;
+        }
+
+        40%,
+        60% {
+            opacity: 0;
+        }
+
+        50%,
+        70% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+</style>
+
+
+
+<body>
+    <div class="click">Click&Drag</div>
+    <div id="melbourne"></div>
+    <div id="bcos"></div>
+
+</body>
+
+
+
+<script>
+    const fullText = `The land I landed on is called <i>Melbourne</i>.
+A place populated by buildings, people, and plants.<br>
+One afternoon, standing in the middle of the street,
+I suddenly felt a severe headache.
+Even with a healthy appetite,
+Even when I sleep well,
+I know this is <i>neurasthenia</i>.
+How do I know?`;
+
+    const melbourne = document.getElementById('melbourne');
+    let i = 0;
+    let speed = 80;
+    let isTag = false;
+
+
+    function typeWriter() {
+        if (i < fullText.length) {
+            let char = fullText.charAt(i);
+            melbourne.innerHTML = fullText.slice(0, i + 1).replace(/\n/g, '<br>');
+            if (char === "<") isTag = true;
+            if (char === ">") isTag = false;
+
+            i++;
+            if (isTag) {
+                typeWriter();
+            } else {
+                setTimeout(typeWriter, speed);
+            }
+        }
+    }
+
+    typeWriter();
+
+    function typeWriterBcos() {
+        const bcos = document.getElementById('bcos');
+        const bcosText = 'Because...';
+        let j = 0;
+
+        function typeBcos() {
+            if (j < bcosText.length) {
+                let displayText = bcosText.slice(0, j + 1);
+                bcos.innerHTML = `<a href="walk.html">${displayText}</a>`;
+                j++;
+                setTimeout(typeBcos, 150);
+            }
+        }
+
+        setTimeout(typeBcos, 27000);
+    }
+    typeWriterBcos();
+
+
+</script>
+<script src="melbourne.js" defer></script>
+
+</html>
