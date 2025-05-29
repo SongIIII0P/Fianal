@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+
+    <title>SSongII's World</title>
+
+</head>
+
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        overflow: hidden;
+        background: linear-gradient(to bottom,
+                white 0%,
+                rgb(0, 0, 255) 25%,
+                white 55%,
+                rgb(0, 0, 225) 75%,
+                white 100%);
+        background-size: 100% 400%;
+        background-repeat: no-repeat;
+        animation: gradientEffect 10s linear infinite alternate;
+        z-index: -1;
+    }
+
+
+
+    @keyframes gradientEffect {
+        0% {
+            background-position: 0% 0%;
+        }
+        20% {
+            background-position: 0% 20%;
+        }
+        50% {
+            background-position: 0% 50%;
+        }
+        80% {
+            background-position: 0% 80%;
+        }
+
+        100% {
+            background-position: 0% 100%;
+        }
+    }
+
+
+
+    .click {
+        position: absolute;
+        top: 3%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: black;
+        font-size: 18px;
+        text-align: center;
+        z-index: 1;
+        pointer-events: none;
+        user-select: none;
+        filter: blur(0.5px);
+        transition: filter 3s ease;
+        animation: blury 4s ease infinite alternate;
+        
+       /** text-shadow: 0px 0px 14px blue;
+       /** animation: colour ease-in-out infinite alternate;**/
+
+    }
+
+    @keyframes blury {
+        to {
+            filter: blur(0);
+        }
+    }
+
+    #melbourne {
+        position: fixed;
+        top: 1%;
+        left: 1%;
+        font-size: 17px;
+        color: whitesmoke;
+        white-space: pre-line;
+        opacity: 1;
+        text-shadow: 0 0 15px blue, 0 0 25px blue, 0 0 40px blue;
+        z-index: 10;
+        pointer-events: none;
+        user-select: none;
+    }
+
+    #bcos a {
+        position: fixed;
+        bottom: 3%;
+        right: 1%;
+        font-size: 17px;
+        text-decoration: none;
+        color: whitesmoke;
+        white-space: pre-line;
+        text-shadow: 0px 0px 12px blue;
+        z-index: 10;
+        user-select: none;
+        opacity: 1;
+        animation: flicker 2s ease-in-out infinite alternate;
+        animation-delay: 0.6s;
+        font-style: italic;
+
+    }
+
+    #bcos a:hover {
+        color: blue;
+    }
+
+
+
+    @keyframes flicker {
+        0% {
+            text-shadow: 0 0 12px whitesmoke;
+        }
+
+        50% {
+            text-shadow: 0 0 15px whitesmoke, 0 0 25px whitesmoke, 0 0 40px whitesmoke;
+        }
+
+        100% {
+            text-shadow: 0 0 14px whitesmoke, 0 0 14px whitesmoke, 0 0 18px whitesmoke;
+        }
+    }
+
+
+
+    @keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
+    }
+
+
+    @keyframes fadeOut {
+        to {
+            opacity: 0;
+        }
+    }
+
+    @keyframes fadeInOut {
+
+        0%,
+        20% {
+            opacity: 0;
+        }
+
+        10%,
+        30% {
+            opacity: 1;
+        }
+
+        40%,
+        60% {
+            opacity: 0;
+        }
+
+        50%,
+        70% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+</style>
+
+
+
+<body>
+    <div class="click"><i>Click and drag</i></div>
+    <div id="melbourne"></div>
+    <div id="bcos"></div>
+
+</body>
+
+
+
+<script>
+    const fullText = `The land I landed on is called <i>Melbourne</i>.
+A place populated by buildings, people, and plants.<br>
+One afternoon, standing in the middle of the street,
+I suddenly felt a severe headache.
+Even with a healthy appetite,
+Even when I sleep well,
+I know this is <i>neurasthenia</i>.
+How do I know?`;
+
+    const melbourne = document.getElementById('melbourne');
+    let i = 0;
+    let speed = 80;
+    let isTag = false;
+
+
+    function typeWriter() {
+        if (i < fullText.length) {
+            let char = fullText.charAt(i);
+            melbourne.innerHTML = fullText.slice(0, i + 1).replace(/\n/g, '<br>');
+            if (char === "<") isTag = true;
+            if (char === ">") isTag = false;
+
+            i++;
+            if (isTag) {
+                typeWriter();
+            } else {
+                setTimeout(typeWriter, speed);
+            }
+        }
+    }
+
+    typeWriter();
+
+    function typeWriterBcos() {
+        const bcos = document.getElementById('bcos');
+        const bcosText = 'Because...';
+        let j = 0;
+
+        function typeBcos() {
+            if (j < bcosText.length) {
+                let displayText = bcosText.slice(0, j + 1);
+                bcos.innerHTML = `<a href="walk.html">${displayText}</a>`;
+                j++;
+                setTimeout(typeBcos, 150);
+            }
+        }
+
+        setTimeout(typeBcos, 27000);
+    }
+    typeWriterBcos();
+
+
+</script>
+<script src="melbourne.js" defer></script>
+
+</html>
