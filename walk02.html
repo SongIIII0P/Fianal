@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+    <title>SSongII's World</title>
+
+</head>
+
+
+<style>
+
+    .lines {
+        position: fixed;
+        top: 40%;
+        left: 72%;
+
+    }
+    .fadeIn {
+        position: relative;
+        font-size: 17px;
+        color: white;
+        white-space: pre-line;
+        opacity: 0;
+        text-shadow: 0px 0px 3px rgb(138, 156, 243), 0px 0px 8px rgb(138, 156, 243), 0px 0px 12px rgb(138, 156, 243);
+        z-index: 5;
+        pointer-events: auto;
+        user-select: none;
+        animation: fadeIn 2s ease forwards;
+        display: inline-block;
+        margin-bottom: 0.2em;
+    }
+
+
+    .click {
+        position: absolute;
+        top: 5%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: rgb(0, 0, 0);
+        font-size: 20px;
+        text-align: center;
+        z-index: 1;
+        text-shadow: 0px 0px 8px rgb(0, 89, 255), 0px 0px 14px rgb(0, 89, 255);
+        pointer-events: none;
+        user-select: none;
+        animation: colour ease-in-out infinite alternate;
+
+    }
+
+    @keyframes colour {
+        to {
+            color: blue;
+        }
+    }
+
+
+
+    #bcos a:hover {
+        color: white;
+    }
+
+    #pupil {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 400px;
+        height: 400px;
+        transform: translate(-50%, -50%);         
+        opacity: 0;
+        animation: fadeIn 7s ease 7s forwards;
+        pointer-events: none;
+        user-select: none;
+    }
+
+
+
+    @keyframes flicker {
+        0% {
+            text-shadow: 0 0 12px rgb(138, 156, 243);
+        }
+
+        50% {
+            text-shadow: 0 0 15px rgb(138, 156, 243), 0 0 25px rgb(138, 156, 243), 0 0 40px rgb(138, 156, 243);
+        }
+
+        100% {
+            text-shadow: 0 0 14px rgb(138, 156, 243), 0 0 14px rgb(138, 156, 243) 0 0 18px rgb(138, 156, 243);
+        }
+    }
+
+
+
+    @keyframes fadeIn {
+        to {
+            opacity: 0.5;
+        }
+    }
+
+
+    @keyframes fadeOut {
+        to {
+            opacity: 0;
+        }
+    }
+
+    @keyframes fadeInOut {
+
+        0% {
+            opacity: 0;
+        }
+
+        50% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+
+    #go a{
+        position: fixed;
+        bottom: 2%;
+        right: 1%;
+        font-size: 17px;
+        text-decoration: none;
+        color: rgb(177, 177, 177);
+        white-space: pre-line;
+        text-shadow: 0px 0px 3px rgb(138, 156, 243), 0px 0px 8px rgb(138, 156, 243), 0px 0px 12px rgb(138, 156, 243);
+        z-index: 10;
+        user-select: none;
+        opacity: 1;
+        animation: fadeIn 3s ease forwards, flicker infinite alternate;
+        animation-delay: 20s;
+        
+    }
+
+    #go a:hover {
+        color: blue;
+    }
+
+    #link a {
+        color: inherit;
+        font-style: italic;
+
+    }
+
+
+
+    #link a:hover {
+        color: blue;
+    }
+</style>
+
+
+<body>
+    <div class="click">Click and Drag</div>
+    <div class="lines">
+        <span class="fadeIn" style="animation-delay: 0s">I’m not just walking.</span><br>
+        <span class="fadeIn" style="animation-delay: 2s">I’m always walking while looking at something.</span><br>
+        <span class="fadeIn" style="animation-delay: 4s">It’s both a fantasy I’ve created and a truth they’ve declared.</span><br><br>
+      
+        <span class="fadeIn" style="animation-delay: 7s">Every letter feels more like a picture to me,</span><br>
+        <span class="fadeIn" style="animation-delay: 9s">Every word looks more like an image than something to be read.</span><br>
+        <span class="fadeIn" style="animation-delay: 11s">That’s why I often question the function of my eyes.</span><br><br>
+        <span class="fadeIn" style="animation-delay: 14s">But it’s okay.</span><br>
+        <span class="fadeIn" style="animation-delay: 16s">My brain is always working to sweep away that doubt.</span><br>
+        <span class="fadeIn" style="animation-delay: 18s">Even if it takes time.</span><br>
+        <span class="fadeIn" style="animation-delay: 20s">Even if it makes mistakes.</span> <br><br>
+        <span class="fadeIn" id="link" style="animation-delay: 23s"> <a href="lastwalk.html">Still I walk.</a></span>
+    </div>
+
+    <img src="img/puplil.png" id="pupil">
+
+   <!--  <div id="go"><a href="walk02.html"><i>Still, I walk.</i></a></div> -->
+</body>
+
+
+
+
+
+    <script src="walk02.js" defer></script>
+
+</html>
