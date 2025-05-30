@@ -1,3 +1,6 @@
+// This sketch is based on code work by Takawo Shunsuke:
+// https://openprocessing.org/sketch/2134461
+
 let cubes = [];
 
 function setup() {
