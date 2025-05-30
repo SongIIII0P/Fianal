@@ -1,3 +1,6 @@
+// The sketch is inspired by Todd Anderson’s code work:
+// https://openprocessing.org/sketch/517639
+
 let canvas;
 let song;
 let wave;
