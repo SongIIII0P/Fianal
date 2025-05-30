@@ -1,3 +1,6 @@
+// This sketch is based on code work by Takawo Shunsuke:
+// https://openprocessing.org/sketch/2187372
+
 let offsetX = 0;
 let offsetY = 0;
 let zoom = 1;
