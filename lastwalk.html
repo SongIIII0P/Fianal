@@ -130,10 +130,8 @@
 <body>
 
     <video src="img/lastwalk.mp4" autoplay muted id="bgVideo"></video>
-    <audio id="audio0" src="img/audio00.m4a" loop></audio>
-    <audio id="audio2" src="img/audio02.m4a" loop></audio>
-    <audio id="audio3" src="img/audio03.mp3" loop></audio>
-    <audio id="audio4" src="img/audio04.wav" loop></audio>
+    <audio id="audio05" src="img/audio05.mp3" loop></audio>
+
 
     <div class="clickBtn"><i>click</i></div>
     <div class="subtitle" id="subtitle">Again, welcome to SSongII’s World</div>
@@ -148,8 +146,8 @@
     
     const subtitles = [
         "This is my world.",
-        "My universe.",
-        "My dimension.",
+        "My fantasy.",
+        "My distortion.",
         "This is how I see things.",
         "This is how I hear things.",
         "This is how I interpret things.",
@@ -162,7 +160,7 @@
     const subtitleEl = document.getElementById("subtitle");
 
     const durations = [
-      2000, 2000, 2000, 2600, 2600, 2600, 4500, 4500, 2500
+      2500, 2000, 2000, 2600, 2600, 2600, 4500, 4500, 2500
     ];
 
     function showSubtitle() {
@@ -179,11 +177,7 @@
     }
 
 
-    const audio0 = document.getElementById("audio0");
-    const audio2 = document.getElementById("audio2");
-    const audio3 = document.getElementById("audio3");
-    const audio4 = document.getElementById("audio4");
-
+    const audio05 = document.getElementById("audio05");
     const clickBtn = document.querySelector(".clickBtn");
 
     clickBtn.addEventListener("click", () => {
@@ -193,24 +187,7 @@
 
         clickBtn.style.animation = "fadeOut 3s ease forwards";
 
-        setTimeout(() => {
-            audio0.play();
-        }, 0);
-
-
-        setTimeout(() => {
-            audio2.play();
-        }, 4000);
-
-        setTimeout(() => {
-            audio3.volume = 0.3;
-            audio3.play();
-        }, 11200);
-
-        setTimeout(() => {
-            audio4.volume = 0.3;
-            audio4.play();
-        }, 15700);
+        audio05.play();
     });
 </script>
 

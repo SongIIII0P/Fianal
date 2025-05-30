@@ -1,11 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Scribble&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.min.js"></script>
+
     <title>SSongII's World</title>
 </head>
+
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        overflow: hidden;
+        background-color: blue;
+        background-size: 100% 100%;
+        z-index: -1;
+    }
+
+    .click {
+        position: absolute;
+        top: 3%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: black;
+        text-shadow: 0 0 12px black;
+        font-size: 18px;
+        text-align: center;
+        z-index: 1;
+        pointer-events: none;
+        user-select: none;
+        filter: blur(0.5px);
+        transition: filter 3s ease;
+        animation: blury 4s ease infinite alternate;
+
+
+    }
+
+
+
+    .lines {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 97vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 17px;
+        color: white;
+        text-align: center;
+        text-shadow: 0px 0px 3px rgb(138, 156, 243), 0px 0px 8px rgb(138, 156, 243), 0px 0px 12px rgb(138, 156, 243);
+        white-space: pre-line;
+        user-select: none;
+        z-index: 1;
+    }
+
+    .first {
+        margin-bottom: 16px;
+    }
+ 
+
+    .first,
+    .third {
+        opacity: 0;
+        animation: fadeIn 4s ease forwards;
+    }
+
+    .fadeLine {
+        opacity: 0;
+        transition: opacity 1.5s ease;
+        white-space: pre-line;
+    }
+
+    .fadeLine.visible {
+        opacity: 1;
+    }
+
+
+    @keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
+    }
+
+    #link{
+        opacity: 0;
+
+    }
+
+    #link a {
+        color: inherit;
+        font-style: italic;
+
+    }
+
+    #link a:hover {
+        color: blue;
+    }
+</style>
+
 <body>
-    
+    <div class="click"><i>Click, Click and Click...</i></div>
+    <div class="lines">
+        <div class="first">
+            I’m not just walking.
+            I’m always walking while hearing something.
+            It’s both a distortion I’ve created and a truth they’ve declared.
+        </div>
+
+        <div id="second">
+
+        </div>
+
+        <div class="third">
+            They all sound more like noise than anything meant to be understood.
+            That’s why I stay silent.
+            They slip through me.
+
+            But it’s okay.
+            I just keep doing what I can.
+            Even if it takes time.
+            Even if I make mistakes. <br>
+            <span id="link"> <a href="lastwalk.html"> Still I walk.</a></span>
+        </div>
+    </div>
+
+
+
+
+
 </body>
+
+<script>
+    const secondDiv = document.getElementById("second");
+    const lines = [
+        "The words my friend says to me,",
+        "The tutor’s voice in class,",
+        "The music playing in the street,",
+        "The announcements in the train station,",
+        "Conversations from people walking right beside me."
+    ];
+
+    let index = 0;
+    let elements = [];
+
+    function createLines() {
+        secondDiv.innerHTML = "";
+        elements = lines.map(text => {
+            const el = document.createElement("div");
+            el.classList.add("fadeLine");
+            el.textContent = text;
+            secondDiv.appendChild(el);
+            return el;
+        });
+    }
+
+    createLines();
+
+    document.addEventListener("click", () => {
+        if (index < lines.length) {
+            elements[index].classList.add("visible");
+            index++;
+        } else if (index === lines.length) {
+            elements.forEach(el => el.classList.remove("visible"));
+            index = 0;
+            document.getElementById("link").style.animation = "fadeIn 3s ease 2s forwards";
+        }
+    });
+</script>
+
+<script src="walk03.js" defer></script>
+
 </html>

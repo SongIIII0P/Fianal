@@ -11,21 +11,50 @@
 </head>
 
 <style>
-    body{
+    body {
         margin: 0;
         padding: 0;
         height: 100vh;
         overflow: hidden;
-        background: linear-gradient(to bottom,
+        background-color: blue;
+        background-size: 100% 100%;
+        /**background: linear-gradient(to bottom,
                 white 0%,
                 rgb(0, 0, 255) 25%,
                 white 55%,
                 rgb(0, 0, 225) 75%,
                 white 100%);
-        background-size: 100% 400%;
+        
         background-repeat: no-repeat;
-        animation: gradientEffect 10s linear infinite alternate;
+        animation: gradientEffect 10s linear infinite alternate; **/
         z-index: -1;
+    }
+
+    .blueGlow {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 1500px;
+        height: 1500px;
+        background: radial-gradient(circle, black 0%, transparent 60%);
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        animation: fadeIn 3s ease forwards, flutter 10s ease-in-out infinite;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    @keyframes flutter {
+
+        0%,
+        100% {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        50% {
+            transform: translate(-50%, -50%) scale(0.7);
+        }
+
     }
 
 
@@ -34,12 +63,15 @@
         0% {
             background-position: 0% 0%;
         }
+
         20% {
             background-position: 0% 20%;
         }
+
         50% {
             background-position: 0% 50%;
         }
+
         80% {
             background-position: 0% 80%;
         }
@@ -56,7 +88,8 @@
         top: 3%;
         left: 50%;
         transform: translate(-50%, -50%);
-        color: black;
+        color: blue;
+        text-shadow: 0 0 8px black, 0 0 12px black;
         font-size: 18px;
         text-align: center;
         z-index: 1;
@@ -65,8 +98,8 @@
         filter: blur(0.5px);
         transition: filter 3s ease;
         animation: blury 4s ease infinite alternate;
-        
-       /** text-shadow: 0px 0px 14px blue;
+
+        /** text-shadow: 0px 0px 14px blue;
        /** animation: colour ease-in-out infinite alternate;**/
 
     }
@@ -82,10 +115,10 @@
         top: 1%;
         left: 1%;
         font-size: 17px;
-        color: whitesmoke;
+        color: black;
         white-space: pre-line;
         opacity: 1;
-        text-shadow: 0 0 15px blue, 0 0 25px blue, 0 0 40px blue;
+       text-shadow: 0 0 12px black;
         z-index: 10;
         pointer-events: none;
         user-select: none;
@@ -97,9 +130,9 @@
         right: 1%;
         font-size: 17px;
         text-decoration: none;
-        color: whitesmoke;
+        color: white;
         white-space: pre-line;
-        text-shadow: 0px 0px 12px blue;
+        text-shadow: 0px 0px 12px white;
         z-index: 10;
         user-select: none;
         opacity: 1;
@@ -110,8 +143,10 @@
     }
 
     #bcos a:hover {
-        color: blue;
+        color: black;
     }
+
+
 
 
 
@@ -178,6 +213,7 @@
     <div class="click"><i>Click and drag</i></div>
     <div id="melbourne"></div>
     <div id="bcos"></div>
+    <div class="blueGlow"></div>
 
 </body>
 
@@ -190,7 +226,7 @@ One afternoon, standing in the middle of the street,
 I suddenly felt a severe headache.
 Even with a healthy appetite,
 Even when I sleep well,
-I know this is <i>neurasthenia</i>.
+I know this is neurasthenia.
 How do I know?`;
 
     const melbourne = document.getElementById('melbourne');
@@ -231,7 +267,7 @@ How do I know?`;
             }
         }
 
-        setTimeout(typeBcos, 27000);
+        setTimeout(typeBcos, 25000);
     }
     typeWriterBcos();
 

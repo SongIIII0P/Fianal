@@ -10,7 +10,8 @@ function setup() {
     canvas.style('background-color', 'transparent');
   
   noFill();
-  stroke(255);
+  //stroke(255);
+  noStroke();
   //ortho(-width / 2, width / 2, -height / 2, height / 2, -5000, 5000);
 }
 
@@ -80,13 +81,15 @@ class Cube {
 
   show() {
     noLights();
+    //noStroke();
+    
 fill(0, 0, 255);
-    stroke(0);
+    stroke(1);
     push();
     translate(this.x, this.y, 0);
     box(this.size);
     pop();
-    // rect(this.x - this.size / 2, this.y - this.size / 2, this.size, this.size);
+  
   }
 
   intersects(other) {
